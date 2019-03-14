@@ -177,9 +177,7 @@ export default class BraftEditor extends React.Component {
       nextEditorState = editorState
     }
 
-    if (nextEditorState) {
-
-      if (nextEditorState && nextEditorState !== this.state.editorState) {
+      if (nextEditorState && JSON.stringify(nextEditorState) !== JSON.stringify(this.state.editorState)) {
 
         const tempColors = ColorUtils.detectColorsFromDraftState(nextEditorState.toRAW(true))
         nextEditorState.setConvertOptions(getConvertOptions(this.editorProps))
@@ -191,14 +189,7 @@ export default class BraftEditor extends React.Component {
           this.props.onChange && this.props.onChange(nextEditorState)
         })
   
-      } else {
-        this.setState({
-          editorState: nextEditorState
-        })
-      }
-
-    }
-
+      } 
   }
 
   componentWillUnmount () {
